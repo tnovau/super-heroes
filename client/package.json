@@ -1,0 +1,52 @@
+{
+  "name": "super-heroes",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "16.13.0",
+    "react-dom": "16.13.0",
+    "react-scripts": "3.4.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "test:ci": "cross-env CI=true yarn test --coverage",
+    "eject": "react-scripts eject",
+    "lint": "eslint src --ext .js,.jsx"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "4.2.4",
+    "@testing-library/react": "9.3.2",
+    "@testing-library/user-event": "7.1.2",
+    "cross-env": "7.0.2",
+    "http-proxy-middleware": "1.0.3"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tnovau/super-heroes.git"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/src/serviceWorker.js",
+      "!<rootDir>/src/index.js"
+    ]
+  }
+}
