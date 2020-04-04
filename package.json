@@ -13,8 +13,8 @@
     "http-proxy-middleware": "1.0.3"
   },
   "scripts": {
-    "start": "cd client && yarn && yarn build && cd .. && node server",
-    "start:no-build": "node server"
+    "build": "cd client && yarn && yarn build && cd ..",
+    "start": "node server"
   },
   "engines": {
     "node": "13.x",
