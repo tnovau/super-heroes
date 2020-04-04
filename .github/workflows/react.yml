@@ -9,7 +9,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -23,12 +22,15 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: yarn
+      working-directory: ./client
     - run: yarn test:ci
+      working-directory: ./client
     - run: yarn lint
+      working-directory: ./client
     - name: Upload coverage
       uses: actions/upload-artifact@v1.0.0
       with:
         name: code_coverage
-        path: coverage/
+        path: ./client/coverage/
       env:
         CI: true
