@@ -21,14 +21,16 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - working-directory: ./client
     - run: yarn
+      working-directory: ./client
     - run: yarn test:ci
+      working-directory: ./client
     - run: yarn lint
+      working-directory: ./client
     - name: Upload coverage
       uses: actions/upload-artifact@v1.0.0
       with:
         name: code_coverage
-        path: coverage/
+        path: ./client/coverage/
       env:
         CI: true
