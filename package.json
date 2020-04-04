@@ -15,7 +15,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src --ext .js"
+    "lint": "eslint src --ext .js,.jsx"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,5 +35,12 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/tnovau/super-heroes.git"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/src/serviceWorker.js"
+    ]
   }
 }
