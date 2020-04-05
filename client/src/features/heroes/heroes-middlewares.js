@@ -7,11 +7,13 @@ import {
 } from "./heroes-action";
 import { api, ui } from "../core";
 
+const AVENGERS_SERIE_ID = 24229;
+
 export const heroesGetMiddleware = () => next => action => {
   if (action.type === GET_HEROES_ACTION) {
     next(ui.loadingStart());
     next(api.apiCall(
-      '/api/marvel/characters',
+      `/api/marvel/series/${AVENGERS_SERIE_ID}/characters`,
       { method: 'GET' },
       getHeroesSuccess,
       getHeroesError));
