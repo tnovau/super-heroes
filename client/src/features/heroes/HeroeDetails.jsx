@@ -1,10 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Grid, Hidden, IconButton, Typography } from '@material-ui/core';
+import { Card, CardContent, Grid, Hidden, IconButton, Typography } from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
 
 import { selectorHero } from "./heroes-selectors";
 import { setHeroeSelectedId } from "./heroes-action";
+import HeroeDetailsList from './HeroeDetailsList'
 
 const HeroeDetails = () => {
   const heroe = useSelector(selectorHero);
@@ -30,7 +31,21 @@ const HeroeDetails = () => {
           {heroe.name}
         </Typography>
       </Grid>
-      <Grid item xs={1} implementation="css" component={Hidden} />
+      <Grid item sm={2} xsDown implementation="css" component={Hidden} />
+      <Grid item xs={12} sm={8}>
+        <Card>
+          <CardContent>
+            <Typography variant="subtitle1" color="textSecondary" gutterBottom>
+              {heroe.description}
+            </Typography>
+          </CardContent>
+        </Card>
+      </Grid>
+      <Grid item sm={2} xsDown implementation="css" component={Hidden} />
+      <HeroeDetailsList listTitle="Comics" {...heroe.comics} />
+      <HeroeDetailsList listTitle="Series" {...heroe.series} />
+      <HeroeDetailsList listTitle="Events" {...heroe.events} />
+      <HeroeDetailsList listTitle="Stories" {...heroe.stories} />
     </Grid>
   )
 };
