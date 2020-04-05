@@ -19,7 +19,7 @@ export default () => {
   return (
     <div className={classes.root}>
       <Typography variant="h2">
-        Marvel Characters
+        Avengers
       </Typography>
       <Grid
         spacing={3}
