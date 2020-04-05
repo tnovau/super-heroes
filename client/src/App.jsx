@@ -11,7 +11,6 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     justifyContent: 'center',
     fontSize: 'calc(10px + 2vmin)',
-    color: 'white',
     width: '100%',
   },
 }));

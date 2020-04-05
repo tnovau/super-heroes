@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Grid, Button, Typography } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { ArrowUpward, ArrowDownward } from '@material-ui/icons';
 
 import { sortHeroes } from './heroes-action';
@@ -11,29 +11,17 @@ const HeroesSort = () => {
   const dispatch = useDispatch();
 
   return (
-    <Grid
-      spacing={3}
-      container
-      direction="row"
-      justify="center"
-      alignItems="center"
+    <Button
+      color="primary"
+      onClick={() => dispatch(sortHeroes(!sortAsc))}
+      endIcon={
+        sortAsc
+          ? <ArrowUpward />
+          : <ArrowDownward />
+      }
     >
-      <Grid item>
-        <Typography>
-          <Button
-            color="secondary"
-            onClick={() => dispatch(sortHeroes(!sortAsc))}
-            endIcon={
-              sortAsc
-                ? <ArrowUpward />
-                : <ArrowDownward />
-            }
-          >
-            Sort
-          </Button>
-        </Typography>
-      </Grid>
-    </Grid>
+      Sort
+    </Button>
   );
 };
 

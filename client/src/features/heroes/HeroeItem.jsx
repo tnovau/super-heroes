@@ -6,14 +6,18 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: 345,
   },
   media: {
     height: 140,
   },
-});
+  cardContent: {
+    backgroundColor: theme.palette.text.primary,
+    color: theme.palette.background.default,
+  }
+}));
 
 const HeroeItem = ({
   name,
@@ -31,7 +35,9 @@ const HeroeItem = ({
           image={`${path}.${extension}`}
           title={name}
         />
-        <CardContent>
+        <CardContent classes={{
+          root: classes.cardContent
+        }}>
           <Typography gutterBottom variant="h5" component="h2">
             {name}
           </Typography>
