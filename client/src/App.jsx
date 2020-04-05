@@ -1,20 +1,28 @@
 import React from 'react';
-import './App.css';
+import { makeStyles } from '@material-ui/core/styles';
+import { HeroesList } from './features/heroes';
 
-const App = () => (<div className="App">
-  <header className="App-header">
-    <p>
-      Edit <code>src/App.js</code> and save to reload.
-    </p>
-    <a
-      className="App-link"
-      href="https://reactjs.org"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Learn React
-    </a>
-  </header>
-</div>);
+const useStyles = makeStyles(() => ({
+  app: {
+    textAlign: 'center',
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 'calc(10px + 2vmin)',
+    color: 'white',
+    width: '100%',
+  },
+}));
+
+const App = () => {
+  const classes = useStyles();
+  return (
+    <div className={classes.app}>
+      <HeroesList />
+    </div>
+  );
+};
 
 export default App;
