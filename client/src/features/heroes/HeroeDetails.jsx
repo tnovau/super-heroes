@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Card, CardContent, Grid, Hidden, IconButton, Typography } from '@material-ui/core';
+import { Card, CardContent, Grid, IconButton, Typography } from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
 
 import { selectorHero } from "./heroes-selectors";
@@ -31,8 +31,7 @@ const HeroeDetails = () => {
           {heroe.name}
         </Typography>
       </Grid>
-      <Grid item sm={2} xsDown implementation="css" component={Hidden} />
-      <Grid item xs={12} sm={8}>
+      <Grid item xs={12}>
         <Card>
           <CardContent>
             <Typography variant="subtitle1" color="textSecondary" gutterBottom>
@@ -41,7 +40,6 @@ const HeroeDetails = () => {
           </CardContent>
         </Card>
       </Grid>
-      <Grid item sm={2} xsDown implementation="css" component={Hidden} />
       <HeroeDetailsList listTitle="Comics" {...heroe.comics} />
       <HeroeDetailsList listTitle="Series" {...heroe.series} />
       <HeroeDetailsList listTitle="Events" {...heroe.events} />
