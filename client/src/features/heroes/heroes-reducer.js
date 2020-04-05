@@ -1,13 +1,15 @@
 import {
   GET_HEROES_ACTION_SUCCESS,
   SET_FILTER_ACTION,
+  SET_HEROE_SELECTED_ACTION,
   SORT_HEROES_ACTION
 } from './heroes-action';
 
 const initialState = {
   sortAsc: true,
   array: [],
-  filter: ''
+  filter: '',
+  heroeSelectedId: ''
 };
 
 const sortAsc = (a, b) => ('' + a.name).localeCompare(b.name);
@@ -30,6 +32,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         filter: action.payload
+      };
+
+    case SET_HEROE_SELECTED_ACTION:
+      return {
+        ...state,
+        heroeSelectedId: action.payload
       };
 
     default:
