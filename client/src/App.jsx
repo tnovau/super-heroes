@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { HeroesList } from './features/heroes';
+import { useSelector } from "react-redux";
+import { HeroesList, HeroeDetails, selectorHeroeSelectedId } from './features/heroes';
 
 const useStyles = makeStyles(() => ({
   app: {
@@ -13,13 +14,22 @@ const useStyles = makeStyles(() => ({
     fontSize: 'calc(10px + 2vmin)',
     width: '100%',
   },
+  root: {
+    flexGrow: 1,
+    width: 'calc(100% - 24px)'
+  },
 }));
 
 const App = () => {
   const classes = useStyles();
+  const heroeSelectedId = useSelector(selectorHeroeSelectedId);
   return (
     <div className={classes.app}>
-      <HeroesList />
+      <div className={classes.root}>
+        {heroeSelectedId
+          ? <HeroeDetails />
+          : <HeroesList />}
+      </div>
     </div>
   );
 };

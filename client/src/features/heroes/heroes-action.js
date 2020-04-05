@@ -6,6 +6,8 @@ export const SORT_HEROES_ACTION = "[heroes] - sort";
 
 export const SET_FILTER_ACTION = "[heroes] - set filter";
 
+export const SET_HEROE_SELECTED_ACTION = "[heroes] - set heroe selected";
+
 export const getHeroes = () => ({
   type: GET_HEROES_ACTION
 });
@@ -28,4 +30,9 @@ export const sortHeroes = (asc) => ({
 export const setFilter = (filter) => ({
   type: SET_FILTER_ACTION,
   payload: filter
+});
+
+export const setHeroeSelectedId = (heroeId) => ({
+  type: SET_HEROE_SELECTED_ACTION,
+  payload: heroeId
 });
