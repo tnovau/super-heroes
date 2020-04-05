@@ -31,7 +31,7 @@ const HeroeDetails = () => {
           {heroe.name}
         </Typography>
       </Grid>
-      <Grid item xs={12}>
+      {heroe.description && <Grid item xs={12}>
         <Card>
           <CardContent>
             <Typography variant="subtitle1" color="textSecondary" gutterBottom>
@@ -39,7 +39,7 @@ const HeroeDetails = () => {
             </Typography>
           </CardContent>
         </Card>
-      </Grid>
+      </Grid>}
       <HeroeDetailsList listTitle="Comics" {...heroe.comics} />
       <HeroeDetailsList listTitle="Series" {...heroe.series} />
       <HeroeDetailsList listTitle="Events" {...heroe.events} />
