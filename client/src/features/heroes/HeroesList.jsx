@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { selectorHeroes } from './heroes-selectors';
 import HeroeItem from "./HeroeItem";
+import HeroesSort from "./HeroesSort";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -21,6 +22,7 @@ export default () => {
       <Typography variant="h2">
         Avengers
       </Typography>
+      <HeroesSort />
       <Grid
         spacing={3}
         container
