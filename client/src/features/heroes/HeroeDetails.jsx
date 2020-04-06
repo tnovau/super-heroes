@@ -40,7 +40,13 @@ const HeroeDetails = () => {
           </CardContent>
         </Card>
       </Grid>}
-      <Grid container alignItems="flex-start">
+      <Grid
+        container
+        alignItems="flex-start"
+        spacing={3}
+        direction="row"
+        justify="center"
+      >
         <HeroeDetailsList listTitle="Comics" {...heroe.comics} />
         <HeroeDetailsList listTitle="Series" {...heroe.series} />
         <HeroeDetailsList listTitle="Events" {...heroe.events} />
