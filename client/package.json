@@ -54,7 +54,10 @@
       "src/**/*.{js,jsx}",
       "!<rootDir>/node_modules/",
       "!<rootDir>/src/serviceWorker.js",
-      "!<rootDir>/src/index.js"
+      "!<rootDir>/src/index.js",
+      "!<rootDir>/src/sw-build.js",
+      "!<rootDir>/src/sw-custom.js",
+      "!<rootDir>/src/setupProxy.js"
     ]
   }
 }

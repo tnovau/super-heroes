@@ -1,3 +1,4 @@
+import { initialState } from "../heroes-reducer";
 const buildHeroeMedia = name => ({
   items: [
     { name }
@@ -12,10 +13,15 @@ export const baseHeroe = {
   comics:  buildHeroeMedia('Avengers'),
   series: buildHeroeMedia('Avengers series'),
   events: buildHeroeMedia('Avengers events'),
-  stories: buildHeroeMedia('Avengers stories')
+  stories: buildHeroeMedia('Avengers stories'),
+  thumbnail: {
+    path: 'a',
+    extension: 'jpg'
+  }
 };
 export const getStoreState = (heroe) => ({
   heroes: {
+    ...initialState,
     array: [heroe],
     heroeSelectedId: baseHeroeId
   }

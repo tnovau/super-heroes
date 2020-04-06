@@ -26,15 +26,15 @@ const App = () => {
   const classes = useStyles();
   const loading = useSelector(selectorLoading);
   const heroeSelectedId = useSelector(selectorHeroeSelectedId);
-  if (loading) {
-    return <CircularProgress />
-  }
   return (
     <div className={classes.app}>
       <div className={classes.root}>
-        {heroeSelectedId
-          ? <HeroeDetails />
-          : <HeroesList />}
+        {loading
+          ? <CircularProgress />
+          : (heroeSelectedId
+            ? <HeroeDetails />
+            : <HeroesList />)
+        }
       </div>
     </div>
   );
