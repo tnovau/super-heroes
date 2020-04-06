@@ -18,7 +18,8 @@ const useStyles = makeStyles(() => ({
   },
   root: {
     flexGrow: 1,
-    width: 'calc(100% - 24px)'
+    width: 'calc(100% - 24px)',
+    flex: 'inherit'
   },
 }));
 
