@@ -27,23 +27,25 @@ const HeroeDetails = () => {
         </IconButton>
       </Grid>
       <Grid item xs={10} >
-        <Typography variant="h2">
+        <Typography variant="h2" data-testid="heroe-name">
           {heroe.name}
         </Typography>
       </Grid>
       {heroe.description && <Grid item xs={12}>
         <Card>
           <CardContent>
-            <Typography variant="subtitle1" color="textSecondary" gutterBottom>
+            <Typography variant="subtitle1" color="textSecondary" gutterBottom data-testid="heroe-description">
               {heroe.description}
             </Typography>
           </CardContent>
         </Card>
       </Grid>}
-      <HeroeDetailsList listTitle="Comics" {...heroe.comics} />
-      <HeroeDetailsList listTitle="Series" {...heroe.series} />
-      <HeroeDetailsList listTitle="Events" {...heroe.events} />
-      <HeroeDetailsList listTitle="Stories" {...heroe.stories} />
+      <Grid container alignItems="flex-start">
+        <HeroeDetailsList listTitle="Comics" {...heroe.comics} />
+        <HeroeDetailsList listTitle="Series" {...heroe.series} />
+        <HeroeDetailsList listTitle="Events" {...heroe.events} />
+        <HeroeDetailsList listTitle="Stories" {...heroe.stories} />
+      </Grid>
     </Grid>
   )
 };

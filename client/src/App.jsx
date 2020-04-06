@@ -25,10 +25,10 @@ const useStyles = makeStyles(() => ({
 const App = () => {
   const classes = useStyles();
   const loading = useSelector(selectorLoading);
+  const heroeSelectedId = useSelector(selectorHeroeSelectedId);
   if (loading) {
     return <CircularProgress />
   }
-  const heroeSelectedId = useSelector(selectorHeroeSelectedId);
   return (
     <div className={classes.app}>
       <div className={classes.root}>
