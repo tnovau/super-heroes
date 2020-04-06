@@ -4,8 +4,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const clientBuildPath = 'client/build'
-const port = process.env.PORT || 8080;
+const clientBuildPath = './client/build'
+const port = process.env.PORT || 3000;
 
 const app = express();
 
