@@ -5,7 +5,7 @@ import {
   SORT_HEROES_ACTION
 } from './heroes-action';
 
-const initialState = {
+export const initialState = {
   sortAsc: true,
   array: [],
   filter: '',

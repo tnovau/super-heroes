@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardContent, Grid, Typography } from '@material-ui/core';
 
 const HeroeDetailsList = ({ items, listTitle }) => (
-  <Grid item xs={12} sm={6}>
+  <Grid item xs={12} sm={6} alignItems="flex-start">
     <Card>
       <CardContent>
         <Typography variant="subtitle2">
