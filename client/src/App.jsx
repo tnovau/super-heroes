@@ -2,6 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from "react-redux";
 import { HeroesList, HeroeDetails, selectorHeroeSelectedId } from './features/heroes';
+import { selectorLoading } from './features/core/ui';
+import { CircularProgress } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   app: {
@@ -15,20 +17,24 @@ const useStyles = makeStyles(() => ({
     width: '100%',
   },
   root: {
-    flexGrow: 1,
+    flexGrow: 'inherit',
     width: 'calc(100% - 24px)'
   },
 }));
 
 const App = () => {
   const classes = useStyles();
+  const loading = useSelector(selectorLoading);
   const heroeSelectedId = useSelector(selectorHeroeSelectedId);
   return (
     <div className={classes.app}>
       <div className={classes.root}>
-        {heroeSelectedId
-          ? <HeroeDetails />
-          : <HeroesList />}
+        {loading
+          ? <CircularProgress />
+          : (heroeSelectedId
+            ? <HeroeDetails />
+            : <HeroesList />)
+        }
       </div>
     </div>
   );

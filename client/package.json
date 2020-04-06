@@ -26,6 +26,7 @@
     "@testing-library/jest-dom": "4.2.4",
     "@testing-library/react": "9.3.2",
     "@testing-library/user-event": "7.1.2",
+    "@types/jest": "25.2.1",
     "cross-env": "7.0.2",
     "http-proxy-middleware": "1.0.3"
   },
@@ -53,7 +54,10 @@
       "src/**/*.{js,jsx}",
       "!<rootDir>/node_modules/",
       "!<rootDir>/src/serviceWorker.js",
-      "!<rootDir>/src/index.js"
+      "!<rootDir>/src/index.js",
+      "!<rootDir>/src/sw-build.js",
+      "!<rootDir>/src/sw-custom.js",
+      "!<rootDir>/src/setupProxy.js"
     ]
   }
 }
