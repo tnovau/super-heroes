@@ -37,7 +37,7 @@ const HeroeItem = ({
       <CardActionArea onClick={() => dispatch(setHeroeSelectedId(id))}>
         <CardMedia
           className={classes.media}
-          image={`${path}.${extension}`}
+          image={`${path}.${extension}`.replace("http://", "https://")}
           title={name}
         />
         <CardContent classes={{
