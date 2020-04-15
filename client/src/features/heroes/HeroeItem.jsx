@@ -22,6 +22,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const isIE = (userAgent) => userAgent.indexOf("MSIE ") > -1 || userAgent.indexOf("Trident/") > -1;
+
 const HeroeItem = ({
   name,
   id,
@@ -31,16 +33,20 @@ const HeroeItem = ({
   }}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-
+  
+  const additionalProps = isIE ? {} : {
+    component: "img",
+    crossOrigin: "anonymous"
+  };
+  
   return (
     <Card className={classes.root}>
       <CardActionArea onClick={() => dispatch(setHeroeSelectedId(id))}>
         <CardMedia
           className={classes.media}
-          component="img"
           image={`${path}.${extension}`.replace("http://", "https://")}
           title={name}
-          crossOrigin="anonymous"
+          {...additionalProps}
         />
         <CardContent classes={{
           root: classes.cardContent
