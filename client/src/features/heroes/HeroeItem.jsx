@@ -34,7 +34,7 @@ const HeroeItem = ({
   const classes = useStyles();
   const dispatch = useDispatch();
   
-  const additionalProps = isIE ? {} : {
+  const additionalProps = isIE(navigator.userAgent) ? {} : {
     component: "img",
     crossOrigin: "anonymous"
   };
