@@ -7,6 +7,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
+import { isIE } from '../../utils';
+
 import { setHeroeSelectedId } from './heroes-action';
 
 const useStyles = makeStyles((theme) => ({
@@ -22,8 +24,6 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const isIE = (userAgent) => userAgent.indexOf("MSIE ") > -1 || userAgent.indexOf("Trident/") > -1;
-
 const HeroeItem = ({
   name,
   id,
@@ -33,12 +33,12 @@ const HeroeItem = ({
   }}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  
+
   const additionalProps = isIE(navigator.userAgent) ? {} : {
     component: "img",
     crossOrigin: "anonymous"
   };
-  
+
   return (
     <Card className={classes.root}>
       <CardActionArea onClick={() => dispatch(setHeroeSelectedId(id))}>

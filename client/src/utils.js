@@ -1,0 +1,1 @@
+export const isIE = (userAgent) => userAgent.indexOf("MSIE ") > -1 || userAgent.indexOf("Trident/") > -1;

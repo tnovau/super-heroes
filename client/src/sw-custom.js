@@ -1,96 +1,85 @@
+if ('function' === typeof importScripts) {
 
-if ("function" === typeof importScripts) {
+  importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js');
 
-  importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js");
-
-  // Global workbox
   if (workbox) {
-    console.log("Workbox is loaded");
-    // Disable logging
-    workbox.setConfig({ debug: false });
+    console.log('Workbox is loaded');
+    workbox.setConfig({ debug: true });
 
-
-    //`generateSW` and `generateSWString` provide the option
-    // to force update an exiting service worker.
-    // Since we're using `injectManifest` to build SW,
-    // manually overriding the skipWaiting();
-    self.addEventListener("install", event => {
+    self.addEventListener('install', () => {
       self.skipWaiting();
     });
 
-
-    // Manual injection point for manifest files.
-    // All assets under build/ and 5MB sizes are precached.
     workbox.precaching.precacheAndRoute([]);
 
-    // Font caching
-    workbox.routing.registerRoute(
-      new RegExp("https://fonts.(?:.googlepis|gstatic).com/(.*)"),
-      workbox.strategies.cacheFirst({
-        cacheName: "googleapis",
-        plugins: [
-          new workbox.expiration.Plugin({
-            maxEntries: 30
-          })
-        ]
-      })
-    );
+    const GOOGLE_FONTS_STYLESHEET = /^https:\/\/fonts\.googleapis\.com/;
+    const GOOGLE_FONTS_STYLESHEET_CACHE = 'google-fonts-stylesheets';
 
-    // Image caching
-    workbox.routing.registerRoute(
-      /\.(?:png|gif|jpg|jpeg|svg)$/,
-      workbox.strategies.cacheFirst({
-        cacheName: "images",
-        plugins: [
-          new workbox.expiration.Plugin({
-            maxEntries: 60,
-            maxAgeSeconds: 30 * 24 * 60 * 60 // 30 Days
-          })
-        ]
-      })
-    );
+    const GOOGLE_FONT_FILES = /^https:\/\/fonts\.gstatic\.com/;
+    const GOOGLE_FONT_FILES_CACHE = 'google-fonts-webfonts';
 
-    // JS, CSS caching
+    const MARVEL_SERIES = /\/api\/marvel\/series\/(.*)/;
+    const MARVEL_SERIES_CACHE = 'marvel-series';
+
+    const MARVEL_IMAGES = /https\:\/\/i.annihil.us(.*)\.(?:png|gif|jpg|jpeg|svg)$/;
+    const MARVEL_IMAGES_CACHE = 'marvel-images';
+
+    const SECOND = 1;
+    const MINUTE = 60 * SECOND;
+    const HOUR = 60 * MINUTE;
+    const DAY = 24 * HOUR;
+    const YEAR = 365 * DAY;
+
     workbox.routing.registerRoute(
-      /\.(?:js|css)$/,
+      GOOGLE_FONTS_STYLESHEET,
       workbox.strategies.staleWhileRevalidate({
-        cacheName: "static-resources",
-        plugins: [
-          new workbox.expiration.Plugin({
-            maxEntries: 60,
-            maxAgeSeconds: 20 * 24 * 60 * 60 // 20 Days
-          })
-        ]
+        cacheName: GOOGLE_FONTS_STYLESHEET_CACHE,
       })
     );
 
     workbox.routing.registerRoute(
-      /\/api\/marvel\/series\/(.*)/,
+      GOOGLE_FONT_FILES,
       workbox.strategies.cacheFirst({
-        cacheName: "marvel-series",
+        cacheName: GOOGLE_FONT_FILES_CACHE,
+        plugins: [
+          new workbox.cacheableResponse.Plugin({
+            statuses: [0, 200],
+          }),
+          new workbox.expiration.Plugin({
+            maxAgeSeconds: YEAR,
+            maxEntries: 30,
+          }),
+        ],
+      })
+    );
+
+    workbox.routing.registerRoute(
+      MARVEL_SERIES,
+      workbox.strategies.cacheFirst({
+        cacheName: MARVEL_SERIES_CACHE,
         plugins: [
           new workbox.expiration.Plugin({
             maxEntries: 5,
-            maxAgeSeconds: 60 * 60 // 1 hour
+            maxAgeSeconds: HOUR
           })
         ]
       })
     )
 
     workbox.routing.registerRoute(
-      /https\:\/\/i.annihil.us(.*)\.(?:png|gif|jpg|jpeg|svg)$/,
+      MARVEL_IMAGES,
       workbox.strategies.cacheFirst({
-        cacheName: "marvel-images",
+        cacheName: MARVEL_IMAGES_CACHE,
         plugins: [
           new workbox.expiration.Plugin({
             maxEntries: 50,
-            maxAgeSeconds: 60 * 60 // 1 hour
+            maxAgeSeconds: HOUR
           })
         ]
       })
     )
 
   } else {
-    console.error("Workbox could not be loaded. No offline support");
+    console.error('Workbox could not be loaded. No offline support');
   }
 }
