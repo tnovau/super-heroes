@@ -64,6 +64,32 @@ if ("function" === typeof importScripts) {
       })
     );
 
+    workbox.routing.registerRoute(
+      /\/api\/marvel\/series\/(.*)/,
+      workbox.strategies.cacheFirst({
+        cacheName: "marvel-series",
+        plugins: [
+          new workbox.expiration.Plugin({
+            maxEntries: 5,
+            maxAgeSeconds: 60 * 60 // 1 hour
+          })
+        ]
+      })
+    )
+
+    workbox.routing.registerRoute(
+      /https\:\/\/i.annihil.us(.*)\.(?:png|gif|jpg|jpeg|svg)$/,
+      workbox.strategies.cacheFirst({
+        cacheName: "marvel-images",
+        plugins: [
+          new workbox.expiration.Plugin({
+            maxEntries: 50,
+            maxAgeSeconds: 60 * 60 // 1 hour
+          })
+        ]
+      })
+    )
+
   } else {
     console.error("Workbox could not be loaded. No offline support");
   }
