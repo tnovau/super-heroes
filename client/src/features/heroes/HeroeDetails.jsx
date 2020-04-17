@@ -1,11 +1,15 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Card, CardContent, Grid, IconButton, Typography } from '@material-ui/core';
-import { ArrowBack } from '@material-ui/icons';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Grid from "@material-ui/core/Grid";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import ArrowBack from "@material-ui/icons/ArrowBack";
 
 import { selectorHero } from "./heroes-selectors";
 import { setHeroeSelectedId } from "./heroes-action";
-import HeroeDetailsList from './HeroeDetailsList'
+import HeroeDetailsList from "./HeroeDetailsList";
 
 const HeroeDetails = () => {
   const heroe = useSelector(selectorHero);
@@ -22,7 +26,7 @@ const HeroeDetails = () => {
         <Grid item xs={1}>
           <IconButton
             color="secondary"
-            onClick={() => { dispatch(setHeroeSelectedId('')) }}
+            onClick={() => dispatch(setHeroeSelectedId(""))}
           >
             <ArrowBack />
           </IconButton>

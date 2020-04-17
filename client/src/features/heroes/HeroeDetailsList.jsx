@@ -9,7 +9,13 @@ const HeroeDetailsList = ({ items, listTitle }) => (
           {listTitle}
         </Typography>
         <ul>
-          {items.map(x => <li key={x.name}><Typography align="left" color="textSecondary">{x.name}</Typography></li>)}
+          {[...new Set(items.map(x => x.name))]
+            .map(name =>
+              <li key={name}>
+                <Typography align="left" color="textSecondary">
+                  {name}
+                </Typography>
+              </li>)}
         </ul>
       </CardContent>
     </Card>

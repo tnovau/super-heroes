@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Router from "./Router";
+import Router from "./components/Router";
+import MyAppBar from "./components/MyAppBar";
 
 const useStyles = makeStyles(() => ({
   app: {
@@ -22,11 +23,14 @@ const useStyles = makeStyles(() => ({
 const App = () => {
   const classes = useStyles();
   return (
-    <div className={classes.app}>
-      <div className={classes.root}>
-        <Router />
+    <>
+      <MyAppBar />
+      <div className={classes.app}>
+        <div className={classes.root}>
+          <Router />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

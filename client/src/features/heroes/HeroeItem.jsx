@@ -6,6 +6,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import { useHistory } from "react-router-dom";
 
 import { isIE } from '../../utils';
 
@@ -33,15 +34,21 @@ const HeroeItem = ({
   }}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const additionalProps = isIE(navigator.userAgent) ? {} : {
     component: "img",
     crossOrigin: "anonymous"
   };
 
+  const handleClick = () => {
+    dispatch(setHeroeSelectedId(id));
+    history.push("/details");
+  }
+
   return (
     <Card className={classes.root}>
-      <CardActionArea onClick={() => dispatch(setHeroeSelectedId(id))}>
+      <CardActionArea onClick={handleClick}>
         <CardMedia
           className={classes.media}
           image={`${path}.${extension}`.replace("http://", "https://")}
