@@ -15,7 +15,7 @@ export const heroesGetMiddleware = () => next => action => {
     next(ui.loadingStart());
     next(api.apiCall(
       getSeriesCharactersUrl(),
-      { method: 'GET' },
+      { method: "GET" },
       getHeroesSuccess,
       getHeroesError));
   }

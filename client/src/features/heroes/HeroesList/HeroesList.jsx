@@ -3,22 +3,20 @@ import { useSelector } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-import { selectorHeroes } from "./heroes-selectors";
+import { selectHeroes } from "../heroes-selectors";
+import HeroesFilter from "./HeroesFilter";
 import HeroeItem from "./HeroeItem";
 import HeroesSort from "./HeroesSort";
-import HeroesFilter from "./HeroesFilter";
-import { ui } from "../core";
+
+import { ui } from "../../core";
 
 export default () => {
-  const loading = useSelector(ui.selectorLoading);
-  const heroes = useSelector(selectorHeroes);
+  const loading = useSelector(ui.selectLoading);
+  const heroes = useSelector(selectHeroes);
 
-  if (loading) {
-    return <CircularProgress />
-  }
-
-  return (
-    <>
+  return loading
+    ? <CircularProgress />
+    : (
       <Grid
         spacing={3}
         container
@@ -40,6 +38,5 @@ export default () => {
             <HeroeItem {...h} />
           </Grid>))}
       </Grid>
-    </>
-  )
+    );
 };
