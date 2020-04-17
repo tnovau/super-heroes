@@ -1,27 +1,31 @@
-export const selectorHeroesObject = (state) => state.heroes;
+import { includes } from "../../utils";
 
-export const selectorHeroesFilter = (state) => selectorHeroesObject(state).filter;
+export const selectHeroesObject = (state) => state.heroes;
 
-export const selectorHeroeSelectedId = (state) =>
-  selectorHeroesObject(state).heroeSelectedId;
+export const selectHeroesFilter = (state) => selectHeroesObject(state).filter;
 
-const includes = (str, searchString) => str.toUpperCase().indexOf(searchString) !== -1;
+export const selectHeroeSelectedId = (state) => selectHeroesObject(state)
+  .heroeSelectedId;
 
-export const selectorHeroesArray = (state) => selectorHeroesObject(state).array;
+export const selectHeroesArray = (state) => selectHeroesObject(state).array;
 
-export const selectorHeroes = (state) => {
-  const filter = selectorHeroesFilter(state).toUpperCase();
-  const heroes = selectorHeroesArray(state);
-  return (!filter)
-    ? heroes
-    : heroes.filter(({ name }) => includes(name, filter));
+export const selectHeroesSortAsc = (state) => selectHeroesObject(state).sortAsc;
+
+export const selectHeroes = (state) => {
+  const filter = selectHeroesFilter(state).toUpperCase();
+  const heroes = selectHeroesArray(state);
+  return (filter)
+    ? heroes.filter(({ name }) => includes(name, filter))
+    : heroes;
 };
 
-export const selectorHero = (state) => {
-  const heroeSelectedId = selectorHeroeSelectedId(state);
+const findById = (heroes, heroeSelectedId) => heroes
+  .filter(({ id }) => id === heroeSelectedId)[0];
+
+export const selectHero = (state) => {
+  const heroeSelectedId = selectHeroeSelectedId(state);
+  const heroes = selectHeroesArray(state);
   return heroeSelectedId
-    ? selectorHeroesArray(state).filter(({ id }) => id === heroeSelectedId)[0]
+    ? findById(heroes, heroeSelectedId)
     : null;
 }
-
-export const selectorHeroesSortAsc = (state) => selectorHeroesObject(state).sortAsc;

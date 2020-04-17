@@ -3,17 +3,15 @@ import {
   SET_FILTER_ACTION,
   SET_HEROE_SELECTED_ACTION,
   SORT_HEROES_ACTION
-} from './heroes-action';
+} from "./heroes-action";
+import { sortAsc, sortDesc } from "../../utils";
 
 export const initialState = {
   sortAsc: true,
   array: [],
-  filter: '',
-  heroeSelectedId: ''
+  filter: "",
+  heroeSelectedId: ""
 };
-
-const sortAsc = (a, b) => ('' + a.name).localeCompare(b.name);
-const sortDesc = (a, b) => sortAsc(b, a);
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -24,7 +22,9 @@ export default (state = initialState, action) => {
       return {
         ...state,
         array: [...state.array]
-          .sort(action.payload ? sortAsc : sortDesc),
+          .sort((a, b) => action.payload
+            ? sortAsc(a.name, b.name)
+            : sortDesc(a.name, b.name)),
         sortAsc: action.payload
       };
 

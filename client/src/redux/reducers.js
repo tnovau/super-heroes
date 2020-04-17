@@ -5,6 +5,6 @@ import { heroesReducer } from "../features/heroes";
 const reducers = {
   heroes: heroesReducer,
   ui: ui.uiReducer
-}
+};
 
 export default combineReducers(reducers);

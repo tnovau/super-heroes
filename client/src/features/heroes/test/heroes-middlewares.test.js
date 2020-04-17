@@ -7,9 +7,9 @@ import {
   getSeriesCharactersUrl
 } from "../heroes-middlewares";
 
-describe('HEROES Module', () => {
-  describe('heroesGetMiddleware', () => {
-    it('Should handle GET_HEROES_ACTION action good response', () => {
+describe("HEROES Module", () => {
+  describe("heroesGetMiddleware", () => {
+    it("Should handle GET_HEROES_ACTION action good response", () => {
       const next = jest.fn();
 
       const getHeroesAction = getHeroes();
@@ -21,21 +21,21 @@ describe('HEROES Module', () => {
       expect(next).toHaveBeenNthCalledWith(3, getHeroesAction);
     });
 
-    it('Should handle other actions', () => {
+    it("Should handle other actions", () => {
       const next = jest.fn();
 
-      heroesGetMiddleware()(next)({ type: '' });
+      heroesGetMiddleware()(next)({ type: "" });
 
       expect(next).toBeCalledTimes(1);
     });
   });
 
-  describe('heroesGetErrorMiddleware', () => {
-    it('Should handle GET_HEROES_ACTION action good response', () => {
+  describe("heroesGetErrorMiddleware", () => {
+    it("Should handle GET_HEROES_ACTION action good response", () => {
       const dispatch = jest.fn();
       const next = jest.fn();
 
-      const getHeroesAction = getHeroesError('SomeError');
+      const getHeroesAction = getHeroesError("SomeError");
       heroesGetErrorMiddleware({ dispatch })(next)(getHeroesAction);
 
       expect(next).toBeCalledTimes(1);
@@ -43,17 +43,17 @@ describe('HEROES Module', () => {
       expect(dispatch).toHaveBeenNthCalledWith(1, loadingFinish());
     });
 
-    it('Should handle other actions', () => {
+    it("Should handle other actions", () => {
       const next = jest.fn();
 
-      heroesGetErrorMiddleware({})(next)({ type: '' });
+      heroesGetErrorMiddleware({})(next)({ type: "" });
 
       expect(next).toBeCalledTimes(1);
     });
   });
 
-  describe('heroesGetSuccessMiddleware', () => {
-    it('Should handle GET_HEROES_ACTION action good response', () => {
+  describe("heroesGetSuccessMiddleware", () => {
+    it("Should handle GET_HEROES_ACTION action good response", () => {
       const dispatch = jest.fn();
       const next = jest.fn();
 
@@ -69,10 +69,10 @@ describe('HEROES Module', () => {
       expect(dispatch).toHaveBeenNthCalledWith(1, loadingFinish());
     });
 
-    it('Should handle other actions', () => {
+    it("Should handle other actions", () => {
       const next = jest.fn();
 
-      heroesGetSuccessMiddleware({})(next)({ type: '' });
+      heroesGetSuccessMiddleware({})(next)({ type: "" });
 
       expect(next).toBeCalledTimes(1);
     });

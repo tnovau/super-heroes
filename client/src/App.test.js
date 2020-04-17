@@ -1,10 +1,11 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import App from './App';
-import { store } from './redux';
+import React from "react";
+import { render } from "@testing-library/react";
+import { Provider } from "react-redux";
+import App from "./App";
+import { store } from "./redux";
 
-test('renders Avengers title', () => {
+test("renders Avengers title", () => {
+  window.scrollTo = jest.fn();
   const { getByText } = render(
     <Provider store={store}>
       <App />

@@ -1,14 +1,18 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Card, CardContent, Grid, IconButton, Typography } from '@material-ui/core';
-import { ArrowBack } from '@material-ui/icons';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
-import { selectorHero } from "./heroes-selectors";
 import { setHeroeSelectedId } from "./heroes-action";
-import HeroeDetailsList from './HeroeDetailsList'
+import { selectHero } from "./heroes-selectors";
+import HeroeDetailsList from "./HeroeDetailsList";
+
+import GoBackButton from "../../components/GoBackButton";
 
 const HeroeDetails = () => {
-  const heroe = useSelector(selectorHero);
+  const heroe = useSelector(selectHero);
   const dispatch = useDispatch();
   return (
     <>
@@ -20,12 +24,7 @@ const HeroeDetails = () => {
         alignItems="center"
       >
         <Grid item xs={1}>
-          <IconButton
-            color="secondary"
-            onClick={() => { dispatch(setHeroeSelectedId('')) }}
-          >
-            <ArrowBack />
-          </IconButton>
+          <GoBackButton onClick={() => dispatch(setHeroeSelectedId(""))} />
         </Grid>
         <Grid item xs={10} >
           <Typography variant="h2" data-testid="heroe-name">
