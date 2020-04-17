@@ -24,5 +24,8 @@ export const getStoreState = (heroe) => ({
     ...initialState,
     array: [heroe],
     heroeSelectedId: baseHeroeId
+  },
+  ui: {
+    loading: false
   }
 });

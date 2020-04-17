@@ -3,13 +3,22 @@ import { useSelector } from 'react-redux';
 import Hidden from '@material-ui/core/Hidden';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import { selectorHeroes } from './heroes-selectors';
 import HeroeItem from "./HeroeItem";
 import HeroesSort from "./HeroesSort";
 import HeroesFilter from "./HeroesFilter";
+import { ui } from "../core";
 
 export default () => {
+  const loading = useSelector(ui.selectorLoading);
   const heroes = useSelector(selectorHeroes);
+
+  if (loading) {
+    return <CircularProgress />
+  }
+
   return (
     <>
       <Grid
