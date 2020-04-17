@@ -18,3 +18,6 @@ export const includes = (string, searchString) =>
 
 /** @param {[]} array */
 export const distinct = (array) => [...new Set(array)];
+
+export const sortAsc = (a, b) => ("" + a).localeCompare(b);
+export const sortDesc = (a, b) => sortAsc(b, a);
