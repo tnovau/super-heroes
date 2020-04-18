@@ -32,10 +32,13 @@ const HeroeItem = ({ name, id, thumbnail }) => {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea onClick={() => {
-        dispatch(setHeroeSelectedId(id));
-        history.push(DETAILS_ROUTE);
-      }}>
+      <CardActionArea
+        data-testid={`card-action-area-${name}`}
+        onClick={() => {
+          dispatch(setHeroeSelectedId(id));
+          history.push(DETAILS_ROUTE);
+        }}
+      >
         <HeroeItemImage
           name={name}
           className={classes.media}
