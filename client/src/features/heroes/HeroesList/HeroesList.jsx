@@ -30,7 +30,7 @@ export default () => {
   };
 
   return loading
-    ? <CircularProgress />
+    ? <CircularProgress data-testid="heroes-list-loading" />
     : (
       <>
         <Grid

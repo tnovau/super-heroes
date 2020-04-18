@@ -1,13 +1,13 @@
 import { includes } from "../../utils";
 
-export const selectHeroesObject = (state) => state.heroes;
+const selectHeroesObject = (state) => state.heroes;
 
 export const selectHeroesFilter = (state) => selectHeroesObject(state).filter;
 
 export const selectHeroeSelectedId = (state) => selectHeroesObject(state)
   .heroeSelectedId;
 
-export const selectHeroesArray = (state) => selectHeroesObject(state).array;
+const selectHeroesArray = (state) => selectHeroesObject(state).array;
 
 export const selectHeroesSortAsc = (state) => selectHeroesObject(state).sortAsc;
 
@@ -25,7 +25,5 @@ const findById = (heroes, heroeSelectedId) => heroes
 export const selectHero = (state) => {
   const heroeSelectedId = selectHeroeSelectedId(state);
   const heroes = selectHeroesArray(state);
-  return heroeSelectedId
-    ? findById(heroes, heroeSelectedId)
-    : null;
+  return findById(heroes, heroeSelectedId);
 }

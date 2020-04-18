@@ -13,12 +13,13 @@ const HeroesSort = () => {
 
   return (
     <Button
+      data-testid="sort-heroes-button"
       color="primary"
       onClick={() => dispatch(sortHeroes(!sortInAscendingOrder))}
       endIcon={
         sortInAscendingOrder
-          ? <ArrowUpward />
-          : <ArrowDownward />
+          ? <ArrowUpward data-testid="sort-arrow-up"/>
+          : <ArrowDownward data-testid="sort-arrow-down" />
       }
     >
       Sort

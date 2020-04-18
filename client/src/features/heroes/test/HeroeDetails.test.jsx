@@ -1,33 +1,54 @@
 import React from "react";
-import { render } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { render, fireEvent, act } from "@testing-library/react";
 
 import HeroeDetails from "../HeroeDetails";
-import { getStoreState, baseHeroe, baseHeroeName } from "./heroe-mock-data";
+import { SET_HEROE_SELECTED_ACTION } from "../heroes-action";
+
+import {
+  createMockStore,
+  getStoreState,
+  baseHeroe,
+  baseHeroeName,
+  ConnectedComponent
+} from "../../../utils/test-utils";
 
 describe("HeroeDetails", () => {
-  it("should render without description", () => {
-    const { getByTestId, getByText } = render(
-      <Provider store={createStore(s => s, getStoreState(baseHeroe))}>
-        <HeroeDetails />
-      </Provider>
-    );
+  const renderWithStore = (store) => render(
+    <ConnectedComponent store={store}>
+      <HeroeDetails />
+    </ConnectedComponent>
+  );
 
-    expect(getByTestId("heroe-name")).toBeInTheDocument();
+  const heroeNameDataTestId = "heroe-name";
+
+  it("should render without description", () => {
+    const { getByTestId, getByText } = renderWithStore(createMockStore(getStoreState()));
+
+    expect(getByTestId(heroeNameDataTestId)).toBeInTheDocument();
     expect(getByText(baseHeroeName)).toBeInTheDocument();
   });
 
   it("should render with description", () => {
     const description = "someDescription";
-    const { getByTestId, getByText } = render(
-      <Provider store={createStore(s => s, getStoreState({...baseHeroe, description }))}>
-        <HeroeDetails />
-      </Provider>
-    );
+    const { getByTestId, getByText } = renderWithStore(
+      createMockStore(getStoreState({...baseHeroe, description })));
 
-    expect(getByTestId("heroe-name")).toBeInTheDocument();
+    expect(getByTestId(heroeNameDataTestId)).toBeInTheDocument();
     expect(getByText(baseHeroeName)).toBeInTheDocument();
     expect(getByText(description)).toBeInTheDocument();
+  });
+
+  it("should dispatch setHeroeSelectedId after click in goBackButton", () => {
+    const mockStore = createMockStore(getStoreState(), jest.fn());
+    const { getByTestId } = renderWithStore(mockStore);
+
+    act(() => {
+      fireEvent.click(getByTestId("heroe-details-go-back-button"));
+    });
+
+    const actionDispatched = mockStore.dispatch.mock.calls[0][0];
+
+    expect(actionDispatched.type).toBe(SET_HEROE_SELECTED_ACTION);
+    expect(actionDispatched.payload).toBe("");
   });
 });

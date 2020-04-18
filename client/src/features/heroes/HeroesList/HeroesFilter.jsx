@@ -9,7 +9,7 @@ const HeroesFilter = () => {
   const filter = useSelector(selectHeroesFilter);
   const dispatch = useDispatch();
 
-  return <TextField
+  return <TextField data-testid="heroes-filter-input"
     label="Type to search..."
     onChange={(ev) => {
       dispatch(setFilter(ev.target.value));
