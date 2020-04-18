@@ -19,7 +19,7 @@ export const baseHeroe = {
     extension: "jpg"
   }
 };
-export const getStoreState = (heroe) => ({
+export const getStoreState = (heroe = baseHeroe) => ({
   heroes: {
     ...initialState,
     array: [heroe],

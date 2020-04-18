@@ -6,16 +6,11 @@ import { HOME_ROUTE } from "../../routes";
 const HeroeDetailsRoute = ({ children, heroeSelectedId, ...rest }) => (
   <Route
     {...rest}
-    render={({ location }) =>
+    render={() =>
       heroeSelectedId ? (
         children
       ) : (
-        <Redirect
-          to={{
-            pathname: HOME_ROUTE,
-            state: { from: location }
-          }}
-        />
+        <Redirect to={HOME_ROUTE}/>
       )
     }
   />

@@ -24,7 +24,10 @@ const HeroeDetails = () => {
         alignItems="center"
       >
         <Grid item xs={1}>
-          <GoBackButton onClick={() => dispatch(setHeroeSelectedId(""))} />
+          <GoBackButton
+            data-testid="heroe-details-go-back-button"
+            onClick={() => dispatch(setHeroeSelectedId(""))}
+          />
         </Grid>
         <Grid item xs={10} >
           <Typography variant="h2" data-testid="heroe-name">

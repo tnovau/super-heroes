@@ -5,7 +5,7 @@ import { createStore } from "redux";
 import { render } from "@testing-library/react";
 
 import HeroesList from "./HeroesList";
-import { getStoreState, baseHeroe, baseHeroeName } from "../test/heroe-mock-data";
+import { getStoreState, baseHeroeName } from "../test/heroe-mock-data";
 
 describe("HeroesList", () => {
   const renderWithStore = (store) => render(
@@ -17,12 +17,12 @@ describe("HeroesList", () => {
   );
 
   it("should render", () => {
-    const { getByText } = renderWithStore(createStore(s => s, getStoreState(baseHeroe)));
+    const { getByText } = renderWithStore(createStore(s => s, getStoreState()));
     expect(getByText(baseHeroeName)).toBeInTheDocument();
   });
 
   it("should render with filter", () => {
-    const state = getStoreState(baseHeroe);
+    const state = getStoreState();
     const { queryByText } = renderWithStore(createStore(s => s, {
       ...state,
       heroes: {
