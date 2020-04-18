@@ -1,24 +1,23 @@
 import React from "react";
-import { Provider } from "react-redux";
-import { MemoryRouter } from "react-router-dom";
-import { createStore } from "redux";
 import { render, act, fireEvent } from "@testing-library/react";
 
 import HeroeItem from "./HeroeItem";
 import { getImageAdditionalProps } from "./HeroeItemImage";
-import { getStoreState, baseHeroe } from "../test/heroe-mock-data";
 import { SET_HEROE_SELECTED_ACTION } from "../heroes-action";
+import {
+  ConnectedComponent,
+  getStoreState,
+  baseHeroe,
+  createMockStore
+} from "../../../utils/test-utils";
 
 describe("HeroeItem", () => {
   it("should dispatch setHeroeSelectedId onClick", () => {
-    const store = createStore(s => s, getStoreState());
-    const mockStore = { ...store, dispatch: jest.fn() };
+    const mockStore = createMockStore(getStoreState(), jest.fn());
     const { getByTestId } = render(
-      <MemoryRouter>
-        <Provider store={mockStore}>
-          <HeroeItem {...baseHeroe} />
-        </Provider>
-      </MemoryRouter>);
+      <ConnectedComponent store={mockStore}>
+        <HeroeItem {...baseHeroe} />
+      </ConnectedComponent>);
 
     act(() => {
       fireEvent.click(

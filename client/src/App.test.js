@@ -1,15 +1,15 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { Provider } from "react-redux";
 import App from "./App";
 import { store } from "./redux";
+import { ConnectedComponent } from "./utils/test-utils";
 
 test("renders Avengers title", () => {
   window.scrollTo = jest.fn();
   const { getByText } = render(
-    <Provider store={store}>
+    <ConnectedComponent store={store}>
       <App />
-    </Provider>
+    </ConnectedComponent>
   );
   const linkElement = getByText(/Avengers/i);
   expect(linkElement).toBeInTheDocument();

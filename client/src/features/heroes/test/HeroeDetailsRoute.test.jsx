@@ -1,38 +1,31 @@
 import React from "react";
-import { MemoryRouter, Route, BrowserRouter, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { render } from "@testing-library/react";
-import { createMemoryHistory } from "history";
-const history = createMemoryHistory();
 
 import HeroeDetailsRoute from "../HeroeDetailsRoute";
-import { DETAILS_ROUTE, HOME_ROUTE } from "../../../routes";
+import { DETAILS_ROUTE } from "../../../routes";
+import { ConnectedComponent, createMockStore } from "../../../utils/test-utils";
 
 describe("HeroeDetailsRoute", () => {
-  it("should redirect to the children if the heroeSelectedId is truthy", () => {
-    const { getByTestId } = render(
-      <MemoryRouter initialEntries={[DETAILS_ROUTE]}>
-        <HeroeDetailsRoute heroeSelectedId="some">
-          <div data-testid="children"></div>
-        </HeroeDetailsRoute>
-      </MemoryRouter>
-    );
 
+  const renderWithId = (id) => render(
+    <ConnectedComponent store={createMockStore()} initialEntries={[DETAILS_ROUTE]}>
+      <HeroeDetailsRoute heroeSelectedId={id}>
+        <div data-testid="children"></div>
+      </HeroeDetailsRoute>
+      <Route path="*">
+        <div>Something</div>
+      </Route>
+    </ConnectedComponent>
+  );
+
+  it("should redirect to the children if the heroeSelectedId is truthy", () => {
+    const { getByTestId } = renderWithId("some");
     expect(getByTestId("children")).toBeInTheDocument();
   });
 
   it("should redirect to the children if the heroeSelectedId is truthy", () => {
-    history.push(DETAILS_ROUTE);
-    const { getByText } = render(
-      <MemoryRouter initialEntries={[DETAILS_ROUTE]}>
-        <HeroeDetailsRoute heroeSelectedId="">
-            <div data-testid="children"></div>
-          </HeroeDetailsRoute>
-          <Route path="*">
-            <div>Something</div>
-          </Route>
-      </MemoryRouter>
-    );
-
+    const { getByText } = renderWithId("");
     expect(getByText(/Something/)).toBeInTheDocument();
   });
 });

@@ -1,31 +1,15 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { MemoryRouter } from "react-router-dom";
 
 import Router from "./Router";
-import { store } from "../redux";
+import { ConnectedComponent, createMockStore } from "../utils/test-utils";
 
 describe('Router', () => {
-  it("navigates home when you click the logo", () => {
+  it("should no match", () => {
     const { getByTestId } = render(
-      <Provider store={store}>
-        <MemoryRouter initialEntries={['/some-weird-route']}>
-          <Router />
-        </MemoryRouter>
-      </Provider>
-    );
-
-    expect(getByTestId("no-match-container")).toBeInTheDocument();
-  });
-
-  it("navigates home when you click the logo", () => {
-    const { getByTestId } = render(
-      <Provider store={store}>
-        <MemoryRouter initialEntries={['/some-weird-route']}>
-          <Router />
-        </MemoryRouter>
-      </Provider>
+      <ConnectedComponent store={createMockStore()} initialEntries={['/some-weird-route']}>
+        <Router />
+      </ConnectedComponent>
     );
 
     expect(getByTestId("no-match-container")).toBeInTheDocument();

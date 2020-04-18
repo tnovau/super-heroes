@@ -1,7 +1,7 @@
 import React from "react";
 
-import { isIE, replaceHttpWithHttps } from "../../../utils";
 import CardMedia from "@material-ui/core/CardMedia";
+import { isIE, replaceHttpWithHttps } from "../../../utils";
 
 const getImageSrc = ({ path, extension }) => replaceHttpWithHttps(`${path}.${extension}`);
 
