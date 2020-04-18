@@ -34,7 +34,7 @@ describe("HeroesList", () => {
     expect(queryByText(baseHeroeName)).toBeNull();
   });
 
-  it('should render loading if it is loading heroes', () => {
+  it("should render loading if it is loading heroes", () => {
     const baseState = getStoreState();
     const { getByTestId } = renderWithStore(createMockStore({
       ...baseState,

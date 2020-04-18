@@ -30,7 +30,7 @@ describe("HeroeItem", () => {
     expect(actionDispatched.payload).toBe(baseHeroe.id);
   });
 
-  it('should return empty object if the navigator is ie', () => {
+  it("should return empty object if the navigator is ie", () => {
     expect(getImageAdditionalProps("MSIE ")).toEqual({});
   });
 });
