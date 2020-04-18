@@ -13,11 +13,11 @@ describe("HeroeItem", () => {
     const store = createStore(s => s, getStoreState());
     const mockStore = { ...store, dispatch: jest.fn() };
     const { getByTestId } = render(
-    <MemoryRouter>
-      <Provider store={mockStore}>
-        <HeroeItem {...baseHeroe} />
-      </Provider>
-    </MemoryRouter>);
+      <MemoryRouter>
+        <Provider store={mockStore}>
+          <HeroeItem {...baseHeroe} />
+        </Provider>
+      </MemoryRouter>);
 
     act(() => {
       fireEvent.click(
