@@ -5,6 +5,7 @@ import { createStore } from "redux";
 import { render, act, fireEvent } from "@testing-library/react";
 
 import HeroeItem from "./HeroeItem";
+import { getImageAdditionalProps } from "./HeroeItemImage";
 import { getStoreState, baseHeroe } from "../test/heroe-mock-data";
 import { SET_HEROE_SELECTED_ACTION } from "../heroes-action";
 
@@ -28,5 +29,9 @@ describe("HeroeItem", () => {
 
     expect(actionDispatched.type).toBe(SET_HEROE_SELECTED_ACTION);
     expect(actionDispatched.payload).toBe(baseHeroe.id);
+  });
+
+  it('should return empty object if the navigator is ie', () => {
+    expect(getImageAdditionalProps("MSIE ")).toEqual({});
   });
 });

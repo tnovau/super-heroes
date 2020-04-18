@@ -32,4 +32,13 @@ describe("HeroesList", () => {
     }));
     expect(queryByText(baseHeroeName)).toBeNull();
   });
+
+  it('should render loading if it is loading heroes', () => {
+    const baseState = getStoreState();
+    const { getByTestId } = renderWithStore(createStore(s => s, {
+      ...baseState,
+      ui: { loading: true }
+    }));
+    expect(getByTestId("heroes-list-loading")).toBeInTheDocument();
+  });
 });
