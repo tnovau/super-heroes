@@ -1,4 +1,5 @@
 import express from "express";
+import expressHttpToHttps from 'express-http-to-https';
 import httpProxyMiddleware from "http-proxy-middleware";
 import dotenv from "dotenv";
 
@@ -10,6 +11,9 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.static(clientBuildPath));
+const IGNORE_HOSTS = [/localhost:(\d{4})/];
+const REDIRECT_STATUS_CODE = 301;
+app.use(expressHttpToHttps.redirectToHTTPS(IGNORE_HOSTS, [], REDIRECT_STATUS_CODE));
 app.use(
   '/api/marvel',
   httpProxyMiddleware.createProxyMiddleware({
