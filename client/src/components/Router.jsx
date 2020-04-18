@@ -1,6 +1,7 @@
 import React from "react";
 import {
-  Route
+  Route,
+  Switch
 } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -15,7 +16,7 @@ import {
 import { HOME_ROUTE, DETAILS_ROUTE } from "../routes";
 
 const Router = () => (
-  <>
+  <Switch>
     <Route path={HOME_ROUTE} exact>
       <HeroesList />
     </Route>
@@ -28,7 +29,7 @@ const Router = () => (
     <Route path="*">
       <NoMatch />
     </Route>
-  </>
+  </Switch>
 );
 
 export default Router;

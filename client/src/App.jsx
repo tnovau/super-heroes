@@ -1,7 +1,6 @@
 import React from "react";
 import {
-  BrowserRouter,
-  Switch,
+  BrowserRouter
 } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Router from "./components/Router";
@@ -33,9 +32,7 @@ const App = () => {
       <MyAppBar />
       <div className={classes.app}>
         <div className={classes.root}>
-          <Switch>
-            <Router />
-          </Switch>
+          <Router />
         </div>
       </div>
     </BrowserRouter>
