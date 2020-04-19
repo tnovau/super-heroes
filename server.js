@@ -27,6 +27,10 @@ app.use(
   })
 );
 
+app.get('*', (_req, res) => {
+  res.sendFile(clientBuildPath, 'index.html');
+});
+
 app.listen(port, () => {
   console.log(`App running in port: ${port}`);
 });
