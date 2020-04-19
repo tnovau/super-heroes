@@ -24,6 +24,7 @@ It uses [react](https://reactjs.org/) to build the user interface.
 It uses [redux](http://redux.js.org/) for state managements.
 It uses [react-router](https://reacttraining.com/react-router/web/guides/quick-start) for routing.
 It uses [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro) for testing.
+It uses [workbox](https://developers.google.com/web/tools/workbox) for PWA configuration.
 
 __Features__:
 - Listing
