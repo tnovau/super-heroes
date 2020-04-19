@@ -6,6 +6,9 @@ name: React workflow
 on:
   pull_request:
     branches: [ master ]
+  push:
+    branches: 
+      - maste
 
 jobs:
   build:
@@ -31,6 +34,9 @@ jobs:
       uses: actions/upload-artifact@v1.0.0
       with:
         name: code_coverage
-        path: ./client/coverage/
+        path: ./client/coverage
+    - name: Codecov
+      uses: codecov/codecov-action@v1.0.6
+      
       env:
         CI: true
