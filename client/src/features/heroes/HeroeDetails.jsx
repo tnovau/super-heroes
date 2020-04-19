@@ -51,10 +51,10 @@ const HeroeDetails = () => {
         direction="row"
         justify="center"
       >
-        <HeroeDetailsList listTitle="Comics" {...heroe.comics} />
-        <HeroeDetailsList listTitle="Series" {...heroe.series} />
-        <HeroeDetailsList listTitle="Events" {...heroe.events} />
-        <HeroeDetailsList listTitle="Stories" {...heroe.stories} />
+        <HeroeDetailsList listTitle="Comics" items={heroe.comics.items} />
+        <HeroeDetailsList listTitle="Series" items={heroe.series.items} />
+        <HeroeDetailsList listTitle="Events" items={heroe.events.items} />
+        <HeroeDetailsList listTitle="Stories" items={heroe.stories.items} />
       </Grid>
     </>
   )

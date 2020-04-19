@@ -4,7 +4,7 @@ if ('function' === typeof importScripts) {
 
   if (workbox) {
     console.log('Workbox is loaded');
-    workbox.setConfig({ debug: true });
+    workbox.setConfig({ debug: false });
 
     self.addEventListener('install', () => {
       self.skipWaiting();
