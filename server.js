@@ -2,7 +2,8 @@ import express from "express";
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import httpProxyMiddleware from "http-proxy-middleware";
-import enforce from 'express-sslify';
+import sslRedirect from 'heroku-ssl-redirect';
+
 import dotenv from "dotenv";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -18,7 +19,7 @@ const app = express();
 app.use(express.static(clientBuildPath));
 
 if (process.env.IS_HEROKU)
-  app.use(enforce.HTTPS({ trustProtoHeader: true }))
+  app.use(sslRedirect())
 
 app.use(
   '/api/marvel',
