@@ -17,7 +17,8 @@ export const includes = (string, searchString) =>
   string.toUpperCase().indexOf(searchString) !== -1;
 
 /** @param {[]} array */
-export const distinct = (array) => [...new Set(array)];
+export const distinct = (array) => array
+  .filter((item, index, arr) => arr.indexOf(item) === index);
 
 export const sortAsc = (a, b) => ("" + a).localeCompare(b);
 export const sortDesc = (a, b) => sortAsc(b, a);
