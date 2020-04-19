@@ -6,6 +6,9 @@ name: React workflow
 on:
   pull_request:
     branches: [ master ]
+  push:
+    branches: 
+      - maste
 
 jobs:
   build:
