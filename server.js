@@ -16,10 +16,10 @@ const port = process.env.PORT || 3000;
 
 const app = express();
 
-app.use(express.static(clientBuildPath));
-
 if (process.env.IS_HEROKU)
   app.use(sslRedirect())
+
+app.use(express.static(clientBuildPath));
 
 app.use(
   '/api/marvel',
