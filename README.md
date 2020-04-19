@@ -8,7 +8,7 @@ Super heroes front-end using react
 It uses [express](https://expressjs.com/) to serve the static assets and redirect the traffic to Marvel API, keeping the API key in the server side.
 
 __Features__:
-- Redirect http to https :rocket: via [express-http-to-https](https://www.npmjs.com/package/express-http-to-https)
+- Redirect http to https :rocket: via [heroku-ssl-redirect](https://www.npmjs.com/package/heroku-ssl-redirect)
 - _.env_ files available via [dotenv](https://www.npmjs.com/package/dotenv)
 - `PORT` is configurable by environment variables.
 
@@ -21,3 +21,14 @@ __How to use it__
 
 ## Client
 It uses [react](https://reactjs.org/) to build the user interface.
+It uses [redux](http://redux.js.org/) for state managements.
+It uses [react-router](https://reacttraining.com/react-router/web/guides/quick-start) for routing.
+It uses [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro) for testing.
+
+__Features__:
+- Listing
+- Sorting
+- Filtering
+- Details
+
+Created using [Create React App](https://create-react-app.dev/)
