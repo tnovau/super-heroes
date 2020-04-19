@@ -1,7 +1,12 @@
 import express from "express";
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import expressHttpToHttps from 'express-http-to-https';
 import httpProxyMiddleware from "http-proxy-middleware";
 import dotenv from "dotenv";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 dotenv.config();
 
@@ -28,7 +33,9 @@ app.use(
 );
 
 app.get('*', (_req, res) => {
-  res.sendFile(clientBuildPath, 'index.html');
+  const clientPath = clientBuildPath.replace('.','');
+  const file = join(`${__dirname}${clientPath}/index.html`);
+  res.sendFile(file);
 });
 
 app.listen(port, () => {
