@@ -1,8 +1,8 @@
 import express from "express";
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-import expressHttpToHttps from 'express-http-to-https';
 import httpProxyMiddleware from "http-proxy-middleware";
+import enforce from 'express-sslify';
 import dotenv from "dotenv";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -16,9 +16,10 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.static(clientBuildPath));
-const IGNORE_HOSTS = [/localhost:(\d{4})/];
-const REDIRECT_STATUS_CODE = 301;
-app.use(expressHttpToHttps.redirectToHTTPS(IGNORE_HOSTS, [], REDIRECT_STATUS_CODE));
+
+if (process.env.IS_HEROKU)
+  app.use(enforce.HTTPS({ trustProtoHeader: true }))
+
 app.use(
   '/api/marvel',
   httpProxyMiddleware.createProxyMiddleware({
