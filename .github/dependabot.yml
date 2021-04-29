@@ -1,0 +1,25 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "04:00"
+  open-pull-requests-limit: 10
+- package-ecosystem: npm
+  directory: "/client"
+  schedule:
+    interval: daily
+    time: "04:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: "@testing-library/user-event"
+    versions:
+    - 12.7.2
+    - 13.0.0
+    - 13.0.10
+    - 13.0.6
+  - dependency-name: react-scripts
+    versions:
+    - 4.0.1
+    - 4.0.2
